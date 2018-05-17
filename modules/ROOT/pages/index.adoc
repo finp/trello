@@ -1,0 +1,8 @@
+= AeroGear Trello Normalization
+
+Make the trello cards consitent, consise and relevant
+
+:keycloak: Auth
+{keycloak}
+
+

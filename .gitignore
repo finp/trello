@@ -1,0 +1,6 @@
+.idea/
+# antora
+
+/node_modules/
+/.cache/
+

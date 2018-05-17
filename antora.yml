@@ -1,0 +1,7 @@
+name: trello
+title: AeroGear Trello Normalization
+version: 'latest'
+start_ROOT: ROOT:index.adoc
+nav:
+- modules/ROOT/nav.adoc
+
