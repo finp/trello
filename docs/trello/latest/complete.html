@@ -1,0 +1,803 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/zepto/1.2.0/zepto.min.js"></script>
+<script>
+function addBlockSwitches() {
+	$('.primary').each(function() {
+		primary = $(this);
+		createSwitchItem(primary, createBlockSwitch(primary)).item.addClass("selected");
+		primary.children('.title').remove();
+	});
+	$('.secondary').each(function(idx, node) {
+		secondary = $(node);
+		primary = findPrimary(secondary);
+		switchItem = createSwitchItem(secondary, primary.children('.switch'));
+		switchItem.content.addClass('hidden');
+		findPrimary(secondary).append(switchItem.content);
+		secondary.remove();
+	});
+}
+
+function createBlockSwitch(primary) {
+	blockSwitch = $('<div class="switch"></div>');
+	primary.prepend(blockSwitch);
+	return blockSwitch;
+}
+
+function findPrimary(secondary) {
+	candidate = secondary.prev();
+	while (!candidate.is('.primary')) {
+		candidate = candidate.prev();
+	}
+	return candidate;
+}
+
+function createSwitchItem(block, blockSwitch) {
+	blockName = block.children('.title').text();
+	content = block.children('.content').first().append(block.next('.colist'));
+	item = $('<div class="switch--item">' + blockName + '</div>');
+	item.on('click', '', content, function(e) {
+		$(this).addClass('selected');
+		$(this).siblings().removeClass('selected');
+		e.data.siblings('.content').addClass('hidden');
+		e.data.removeClass('hidden');
+	});
+	blockSwitch.append(item);
+	return {'item': item, 'content': content};
+}
+
+$(addBlockSwitches);    
+</script>
+
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Untitled :: AeroGear Trello Card Normalization</title>
+    <meta name="generator" content="Antora 1.0.1">
+    <link rel="stylesheet" href="../../_/css/site.css">
+  </head>
+  <body class="article">
+<header class="header" role="banner">
+  <nav class="navbar">
+    <div class="navbar-brand">
+      <a class="navbar-item" href="../..">AeroGear Trello Card Normalization</a>
+      <button class="navbar-burger" data-target="topbar-nav">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+    <div id="topbar-nav" class="navbar-menu">
+      <div class="navbar-end">
+        <a class="navbar-item" href="/">Home</a>
+        <div class="navbar-item has-dropdown is-hoverable">
+          <a class="navbar-link" href="#">Mobile Platform</a>
+          <div class="navbar-dropdown">
+            <a class="navbar-item" href="../../android-sdk/latest/index.html">Android</a>
+            <a class="navbar-item" href="../../ios/latest/index.html">iOS</a>
+            <a class="navbar-item" href="../../cordova/latest/index.html">Cordova</a>
+            <a class="navbar-item" href="../../xamarin-sdk/latest/index.html">Xamarin</a>
+          </div>
+        </div>
+        <div class="navbar-item has-dropdown is-hoverable">
+          <a class="navbar-link" href="#">Services</a>
+          <div class="navbar-dropdown">
+            <a class="navbar-item" href="../../custom/latest/index.html">Backend</a>
+            <a class="navbar-item" href="../../push/latest/index.html">Push</a>
+            <a class="navbar-item" href="../../keycloak/latest/index.html">Auth</a>       
+            <a class="navbar-item" href="../../metrics/latest/index.html">Metrics</a>
+            <a class="navbar-item" href="../../build/latest/index.html">CI/CD</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </nav>
+</header>
+<div class="main-wrapper">
+<div class="navigation-container" data-component="trello" data-version="latest">
+  <aside class="navigation" role="navigation">
+    <div class="panels">
+<div class="navigation-menu is-active" data-panel="menu">
+  <nav class="nav-menu">
+    <h3 class="title"><a href="index.html">AeroGear Trello Normalization</a></h3>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-toggle"></button>
+    <a class="nav-link" href="index.html">Overview</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="core.html">Core Team</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="ST1.html">Service Team 1</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="ST2.html">Service Team 2</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-toggle"></button>
+    <a class="nav-link" href="test/index.html">Overview</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="#">core.adoc</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="#">ST1.adoc</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="#">ST2.adoc</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+</ul>
+  </nav>
+</div>
+<div class="navigation-explore" data-panel="explore">
+  <div class="context">
+    <span class="title">AeroGear Trello Normalization</span>
+    <span class="version">latest</span>
+  </div>
+  <ul class="components">
+    <li class="component is-current">
+      <span class="title">AeroGear Trello Normalization</span>
+      <ul class="versions">
+        <li class="version is-current is-latest">
+          <a href="index.html">latest</a>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</div>
+    </div>
+  </aside>
+</div>
+  <main class="main" role="main">
+<div class="toolbar" role="navigation">
+  <button class="navigation-toggle"></button>
+  <a href="index.html" class="home-link"></a>
+<nav class="crumbs" role="navigation" aria-label="breadcrumbs">
+</nav>
+  <div class="edit-this-page"><a href="file:///home/pwright/repos/aerogear/trello/modules/ROOT/pages/complete.adoc">Edit this Page</a></div>
+</div>
+<article class="doc">
+<table class="tableblock frame-all grid-all spread">
+<colgroup>
+<col style="width: 33.3333%;">
+<col style="width: 33.3333%;">
+<col style="width: 33.3334%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">[8] As an AeroGear community tester I want to produce an Android test suite using the selected framework (likely appium) so that we can run E2E tests to verify functionality</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://trello.com/c/hCRLLZP6/47-8-as-an-aerogear-community-tester-i-want-to-produce-an-android-test-suite-using-the-selected-framework-likely-appium-so-that-we" class="bare">trello.com/c/hCRLLZP6/47-8-as-an-aerogear-community-tester-i-want-to-produce-an-android-test-suite-using-the-selected-framework-likely-appium-so-that-we</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">todo</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">As an AeroGear community tester I want to produce a set of Android automated integration tests for the existing Auth functionality</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://trello.com/c/B9NUnTlt/37-as-an-aerogear-community-tester-i-want-to-produce-a-set-of-android-automated-integration-tests-for-the-existing-auth-functionali" class="bare">trello.com/c/B9NUnTlt/37-as-an-aerogear-community-tester-i-want-to-produce-a-set-of-android-automated-integration-tests-for-the-existing-auth-functionali</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">todo</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">[13] As an Enterprise Android mobile developer I want to be able to protect my apps from running on devices that are not trusted so that my app is as secure as possible [idm]</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://trello.com/c/jDxl7l0i/76-13-as-an-enterprise-android-mobile-developer-i-want-to-be-able-to-protect-my-apps-from-running-on-devices-that-are-not-trusted-s" class="bare">trello.com/c/jDxl7l0i/76-13-as-an-enterprise-android-mobile-developer-i-want-to-be-able-to-protect-my-apps-from-running-on-devices-that-are-not-trusted-s</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">todo</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">[13] As an Enterprise Android mobile developer I want to be able to protect my apps from running on devices that are not trusted so that my app is as secure as possible [idm]</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://trello.com/c/QvJtEVa9/75-13-as-an-enterprise-android-mobile-developer-i-want-to-be-able-to-protect-my-apps-from-running-on-devices-that-are-not-trusted-s" class="bare">trello.com/c/QvJtEVa9/75-13-as-an-enterprise-android-mobile-developer-i-want-to-be-able-to-protect-my-apps-from-running-on-devices-that-are-not-trusted-s</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">todo</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">[21] As an Android developer I want access to login/logout/checkAuthStatus functions so that I can use this to manage end user authentication</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://trello.com/c/IsDtEYrR/30-21-as-an-android-developer-i-want-access-to-login-logout-checkauthstatus-functions-so-that-i-can-use-this-to-manage-end-user-aut" class="bare">trello.com/c/IsDtEYrR/30-21-as-an-android-developer-i-want-access-to-login-logout-checkauthstatus-functions-so-that-i-can-use-this-to-manage-end-user-aut</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">todo</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">[5] As an iOS end user I want SSO across client apps so that I can sign into one app and will be authenticated in other apps that use the same identity provider [idm]</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://trello.com/c/sDj5VmVe/44-5-as-an-ios-end-user-i-want-sso-across-client-apps-so-that-i-can-sign-into-one-app-and-will-be-authenticated-in-other-apps-that" class="bare">trello.com/c/sDj5VmVe/44-5-as-an-ios-end-user-i-want-sso-across-client-apps-so-that-i-can-sign-into-one-app-and-will-be-authenticated-in-other-apps-that</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">todo</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">[5] As a Android developer I want clear instructions on how to integrate the Android IdM SDK into my apps so that I can quickly get the SDK working and connect to the IdM Service [idm]</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://trello.com/c/8uMlf5mZ/23-5-as-a-android-developer-i-want-clear-instructions-on-how-to-integrate-the-android-idm-sdk-into-my-apps-so-that-i-can-quickly-ge" class="bare">trello.com/c/8uMlf5mZ/23-5-as-a-android-developer-i-want-clear-instructions-on-how-to-integrate-the-android-idm-sdk-into-my-apps-so-that-i-can-quickly-ge</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">todo</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">[3] As an Android end user I want SSO across client apps so that I can sign into one app and will be authenticated in other apps that use the same identity provider [idm]</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://trello.com/c/isPXWIsw/14-3-as-an-android-end-user-i-want-sso-across-client-apps-so-that-i-can-sign-into-one-app-and-will-be-authenticated-in-other-apps-t" class="bare">trello.com/c/isPXWIsw/14-3-as-an-android-end-user-i-want-sso-across-client-apps-so-that-i-can-sign-into-one-app-and-will-be-authenticated-in-other-apps-t</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">todo</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">[21] As an iOS developer I want access to login/logout/checkStatus functions so that I can use this to manage end user authentication</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://trello.com/c/moHQ8VtF/31-21-as-an-ios-developer-i-want-access-to-login-logout-checkstatus-functions-so-that-i-can-use-this-to-manage-end-user-authenticat" class="bare">trello.com/c/moHQ8VtF/31-21-as-an-ios-developer-i-want-access-to-login-logout-checkstatus-functions-so-that-i-can-use-this-to-manage-end-user-authenticat</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">todo</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">[8] As an iOS developer I want clear instructions on how to integrate the iOS IdM SDK into my apps so that I can quickly get the SDK working and connect to the IdM Service [idm]</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://trello.com/c/61Bqqx2w/27-8-as-an-ios-developer-i-want-clear-instructions-on-how-to-integrate-the-ios-idm-sdk-into-my-apps-so-that-i-can-quickly-get-the-s" class="bare">trello.com/c/61Bqqx2w/27-8-as-an-ios-developer-i-want-clear-instructions-on-how-to-integrate-the-ios-idm-sdk-into-my-apps-so-that-i-can-quickly-get-the-s</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">todo</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">[5] As an Enterprise Developer I want to have the Mobile Services Automatically Pinned so that I have confidence in the identity of the remote server I am connecting to [idm]</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://trello.com/c/YiFf5sTo/12-5-as-an-enterprise-developer-i-want-to-have-the-mobile-services-automatically-pinned-so-that-i-have-confidence-in-the-identity-o" class="bare">trello.com/c/YiFf5sTo/12-5-as-an-enterprise-developer-i-want-to-have-the-mobile-services-automatically-pinned-so-that-i-have-confidence-in-the-identity-o</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">todo</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">"[13] [Cordova,"[13] [Cordova</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">login/out] As a Cordova developer I want access to login/logout/checkStatus functions so that I can use this to manage end user authentication"</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://trello.com/c/S9xJ6yC0/55-13-cordova-login-out-as-a-cordova-developer-i-want-access-to-login-logout-checkstatus-functions-so-that-i-can-use-this-to-manage" class="bare">trello.com/c/S9xJ6yC0/55-13-cordova-login-out-as-a-cordova-developer-i-want-access-to-login-logout-checkstatus-functions-so-that-i-can-use-this-to-manage</a></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">todo</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">"[3] [Cordova,"[3] [Cordova</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Get started Guide] As a Developer</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">I want a 'Getting Started Guide' for the Auth Service</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">such that I have clear instructions on how to get the Auth Service working."</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://trello.com/c/PRO28kXM/60-3-cordova-get-started-guide-as-a-developer-i-want-a-getting-started-guide-for-the-auth-service-such-that-i-have-clear-instructio" class="bare">trello.com/c/PRO28kXM/60-3-cordova-get-started-guide-as-a-developer-i-want-a-getting-started-guide-for-the-auth-service-such-that-i-have-clear-instructio</a></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">todo</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">"[13] As an AeroGear maintainer,"[13] As an AeroGear maintainer</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">I want to clearly define the architecture of the Xamarin Mobile SDK so that we have a clear and extensible architecture for our SDK across the services [comm]"</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://trello.com/c/x4gjpIn8/52-13-as-an-aerogear-maintainer-i-want-to-clearly-define-the-architecture-of-the-xamarin-mobile-sdk-so-that-we-have-a-clear-and-ext" class="bare">trello.com/c/x4gjpIn8/52-13-as-an-aerogear-maintainer-i-want-to-clearly-define-the-architecture-of-the-xamarin-mobile-sdk-so-that-we-have-a-clear-and-ext</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">todo</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">[21] As a Xamarin developer I want access to login/logout/checkStatus functions so that I can use this to manage end user authentication [idm]</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://trello.com/c/3gd6EQNA/49-21-as-a-xamarin-developer-i-want-access-to-login-logout-checkstatus-functions-so-that-i-can-use-this-to-manage-end-user-authenti" class="bare">trello.com/c/3gd6EQNA/49-21-as-a-xamarin-developer-i-want-access-to-login-logout-checkstatus-functions-so-that-i-can-use-this-to-manage-end-user-authenti</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">todo</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">"[MAR,"[MAR</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Service Access and View] As Mobile Developer</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">I want to be able to simply view and manage whether a MAR can access Mobile Services</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">such that a Mobile Service has a simple control mechanism for what clients it accepts requests from."</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://trello.com/c/Y99cFgIC/55-mar-service-access-and-view-as-mobile-developer-i-want-to-be-able-to-simply-view-and-manage-whether-a-mar-can-access-mobile-serv" class="bare">trello.com/c/Y99cFgIC/55-mar-service-access-and-view-as-mobile-developer-i-want-to-be-able-to-simply-view-and-manage-whether-a-mar-can-access-mobile-serv</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">todo</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">"[21] [MAR Integration] As a mobile developer,"[21] [MAR Integration] As a mobile developer</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">I want to bind my mobile client to the available mobile services my client can integrate with so that I can create the required resources my client requires on demand to use the service"</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://trello.com/c/7HmSJUaW/83-21-mar-integration-as-a-mobile-developer-i-want-to-bind-my-mobile-client-to-the-available-mobile-services-my-client-can-integrat" class="bare">trello.com/c/7HmSJUaW/83-21-mar-integration-as-a-mobile-developer-i-want-to-bind-my-mobile-client-to-the-available-mobile-services-my-client-can-integrat</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">todo</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">"[Service Intgrations Overview] As a Mobile Developer,"[Service Intgrations Overview] As a Mobile Developer</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">I want to be able to see all the existing Mobile Service integrations from my project</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">such that I have a full view of what Mobile Services are integrated."</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://trello.com/c/m71n39xZ/42-service-intgrations-overview-as-a-mobile-developer-i-want-to-be-able-to-see-all-the-existing-mobile-service-integrations-from-my" class="bare">trello.com/c/m71n39xZ/42-service-intgrations-overview-as-a-mobile-developer-i-want-to-be-able-to-see-all-the-existing-mobile-service-integrations-from-my</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">todo</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">"[Service Integration Discovery] As a Mobile Developer,"[Service Integration Discovery] As a Mobile Developer</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">when I select a provisioned Mobile Service in my project</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">I want to see a list of other provisioned Mobile Services which could be integrated with the selected service</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">such that overall service integration is simplified."</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://trello.com/c/FalC5FHH/49-service-integration-discovery-as-a-mobile-developer-when-i-select-a-provisioned-mobile-service-in-my-project-i-want-to-see-a-lis" class="bare">trello.com/c/FalC5FHH/49-service-integration-discovery-as-a-mobile-developer-when-i-select-a-provisioned-mobile-service-in-my-project-i-want-to-see-a-lis</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">todo</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">"[Shared Services] As a Mobile Developer,"[Shared Services] As a Mobile Developer</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">I want to be able to integrate two Mobile Services together (across projects)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">such that I can potentially share a common Mobile Service between different projects."</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://trello.com/c/bzJlVChO/43-shared-services-as-a-mobile-developer-i-want-to-be-able-to-integrate-two-mobile-services-together-across-projects-such-that-i-ca" class="bare">trello.com/c/bzJlVChO/43-shared-services-as-a-mobile-developer-i-want-to-be-able-to-integrate-two-mobile-services-together-across-projects-such-that-i-ca</a></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">todo</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">"[Service Integration Create] As a Mobile Developer,"[Service Integration Create] As a Mobile Developer</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">I want to be able to integrate two Mobile Services together (within the same project)</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">such that I can combine two functionalities."</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://trello.com/c/lhSvGydG/39-service-integration-create-as-a-mobile-developer-i-want-to-be-able-to-integrate-two-mobile-services-together-within-the-same-pro" class="bare">trello.com/c/lhSvGydG/39-service-integration-create-as-a-mobile-developer-i-want-to-be-able-to-integrate-two-mobile-services-together-within-the-same-pro</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">todo</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">"[Service Create] As a Mobile Developer,"[Service Create] As a Mobile Developer</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">I want to be able to create/provision Mobile Services from the CLI</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">such that I can avail of the service functionality in my Mobile App."</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://trello.com/c/bm8QRkqa/58-service-create-as-a-mobile-developer-i-want-to-be-able-to-create-provision-mobile-services-from-the-cli-such-that-i-can-avail-of" class="bare">trello.com/c/bm8QRkqa/58-service-create-as-a-mobile-developer-i-want-to-be-able-to-create-provision-mobile-services-from-the-cli-such-that-i-can-avail-of</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">todo</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">"[8] As a developer I want to be able to create a representation of a mobile app (Native Android,"[8] As a developer I want to be able to create a representation of a mobile app (Native Android</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Native iOS &amp; Cordova) via the CLI so that I can integrate the mobile service SDKs and builds."</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://trello.com/c/6aibx2nY/4-8-as-a-developer-i-want-to-be-able-to-create-a-representation-of-a-mobile-app-native-android-native-ios-cordova-via-the-cli-so-t" class="bare">trello.com/c/6aibx2nY/4-8-as-a-developer-i-want-to-be-able-to-create-a-representation-of-a-mobile-app-native-android-native-ios-cordova-via-the-cli-so-t</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">todo</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">[8] As a mobile developer I want to be able to list the available mobile services via the CLI so I can see what services are available to be consumed.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://trello.com/c/DdXwi2OO/5-8-as-a-mobile-developer-i-want-to-be-able-to-list-the-available-mobile-services-via-the-cli-so-i-can-see-what-services-are-avail" class="bare">trello.com/c/DdXwi2OO/5-8-as-a-mobile-developer-i-want-to-be-able-to-list-the-available-mobile-services-via-the-cli-so-i-can-see-what-services-are-avail</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">todo</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">[8] As a mobile developer I want to be able to enable the Identity Management service via the CLI so that I can start using the service</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://trello.com/c/5FqeKsRf/7-8-as-a-mobile-developer-i-want-to-be-able-to-enable-the-identity-management-service-via-the-cli-so-that-i-can-start-using-the-se" class="bare">trello.com/c/5FqeKsRf/7-8-as-a-mobile-developer-i-want-to-be-able-to-enable-the-identity-management-service-via-the-cli-so-that-i-can-start-using-the-se</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">todo</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">[20] As a mobile developer I want to be able to list the available mobile services via the Android Studio UI Extension so I can see what services are available to be consumed.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://trello.com/c/sUHUZWHs/6-20-as-a-mobile-developer-i-want-to-be-able-to-list-the-available-mobile-services-via-the-android-studio-ui-extension-so-i-can-se" class="bare">trello.com/c/sUHUZWHs/6-20-as-a-mobile-developer-i-want-to-be-able-to-list-the-available-mobile-services-via-the-android-studio-ui-extension-so-i-can-se</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">todo</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">"[Service Delete] As a Mobile Developer,"[Service Delete] As a Mobile Developer</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">I want to be able to remove/de-provision a Mobile Service from the CLI</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">such that I don&#8217;t have Services which are not being used in my project."</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://trello.com/c/WCuUlxZx/57-service-delete-as-a-mobile-developer-i-want-to-be-able-to-remove-de-provision-a-mobile-service-from-the-cli-such-that-i-dont-hav" class="bare">trello.com/c/WCuUlxZx/57-service-delete-as-a-mobile-developer-i-want-to-be-able-to-remove-de-provision-a-mobile-service-from-the-cli-such-that-i-dont-hav</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">todo</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">[13] As a mobile developer I want to be able to enable the Identity Management service via the Android Studio so that I can start using the service</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://trello.com/c/9xbMb6js/8-13-as-a-mobile-developer-i-want-to-be-able-to-enable-the-identity-management-service-via-the-android-studio-so-that-i-can-start" class="bare">trello.com/c/9xbMb6js/8-13-as-a-mobile-developer-i-want-to-be-able-to-enable-the-identity-management-service-via-the-android-studio-so-that-i-can-start</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">todo</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">"[Service Integration Create] As a Mobile Developer,"[Service Integration Create] As a Mobile Developer</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">I want to be able to integrate two Mobile Services together (within the same project) from the CLI</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">such that I can combine two functionalities."</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://trello.com/c/q6memQdb/61-service-integration-create-as-a-mobile-developer-i-want-to-be-able-to-integrate-two-mobile-services-together-within-the-same-pro" class="bare">trello.com/c/q6memQdb/61-service-integration-create-as-a-mobile-developer-i-want-to-be-able-to-integrate-two-mobile-services-together-within-the-same-pro</a></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">todo</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">As a mobile developer I want to be able to set up a local instance using Minishift for OpenShift &amp; MCP so that I can evaluate the offering as quickly and easily as possible.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://trello.com/c/DsG8FBTU/1-as-a-mobile-developer-i-want-to-be-able-to-set-up-a-local-instance-using-minishift-for-openshift-mcp-so-that-i-can-evaluate-the" class="bare">trello.com/c/DsG8FBTU/1-as-a-mobile-developer-i-want-to-be-able-to-set-up-a-local-instance-using-minishift-for-openshift-mcp-so-that-i-can-evaluate-the</a></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">todo</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">[5] As a mobile developer I want to be able to set up a local instance using Minishift for OpenShift &amp; MCP so that I can evaluate the offering as quickly and easily as possible.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://trello.com/c/qAtTCPsT/3-5-as-a-mobile-developer-i-want-to-be-able-to-set-up-a-local-instance-using-minishift-for-openshift-mcp-so-that-i-can-evaluate-th" class="bare">trello.com/c/qAtTCPsT/3-5-as-a-mobile-developer-i-want-to-be-able-to-set-up-a-local-instance-using-minishift-for-openshift-mcp-so-that-i-can-evaluate-th</a></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">todo</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">"[Service Delete] As a Mobile Developer,"[Service Delete] As a Mobile Developer</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">I want to be able to remove/de-provision a Mobile Service</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">such that I don&#8217;t have Services which are not being used in my project."</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://trello.com/c/VFc1g5IS/38-service-delete-as-a-mobile-developer-i-want-to-be-able-to-remove-de-provision-a-mobile-service-such-that-i-dont-have-services-wh" class="bare">trello.com/c/VFc1g5IS/38-service-delete-as-a-mobile-developer-i-want-to-be-able-to-remove-de-provision-a-mobile-service-such-that-i-dont-have-services-wh</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">todo</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">"[Service Create] As a Mobile Developer,"[Service Create] As a Mobile Developer</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">I want to be able to create/provision Mobile Services</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">such that I can avail of the service functionality in my Mobile App."</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://trello.com/c/ZFCBRspJ/37-service-create-as-a-mobile-developer-i-want-to-be-able-to-create-provision-mobile-services-such-that-i-can-avail-of-the-service" class="bare">trello.com/c/ZFCBRspJ/37-service-create-as-a-mobile-developer-i-want-to-be-able-to-create-provision-mobile-services-such-that-i-can-avail-of-the-service</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">todo</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">"[Service Integration Delete] As a Mobile Developer,"[Service Integration Delete] As a Mobile Developer</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">I want to be able to remove an existing integration between two Mobile Services from the CLI</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">such that I have full control of the management of Mobile Service integrations."</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://trello.com/c/Tpk5118l/60-service-integration-delete-as-a-mobile-developer-i-want-to-be-able-to-remove-an-existing-integration-between-two-mobile-services" class="bare">trello.com/c/Tpk5118l/60-service-integration-delete-as-a-mobile-developer-i-want-to-be-able-to-remove-an-existing-integration-between-two-mobile-services</a></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">todo</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">"[MAR Create] As a Mobile Developer,"[MAR Create] As a Mobile Developer</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">I want to be able to create/provision a Mobile App Representation</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">such that I have a visual representation of a client application."</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://trello.com/c/VML8q3Hj/44-mar-create-as-a-mobile-developer-i-want-to-be-able-to-create-provision-a-mobile-app-representation-such-that-i-have-a-visual-rep" class="bare">trello.com/c/VML8q3Hj/44-mar-create-as-a-mobile-developer-i-want-to-be-able-to-create-provision-a-mobile-app-representation-such-that-i-have-a-visual-rep</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">todo</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">"[MAR List View] As a Mobile App Developer,"[MAR List View] As a Mobile App Developer</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">I want to be able to select a Mobile App Representation and see all its details from the CLI</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">such that all information for that Mobile App Representation is available to me."</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://trello.com/c/VNlqRE99/66-mar-list-view-as-a-mobile-app-developer-i-want-to-be-able-to-select-a-mobile-app-representation-and-see-all-its-details-from-the" class="bare">trello.com/c/VNlqRE99/66-mar-list-view-as-a-mobile-app-developer-i-want-to-be-able-to-select-a-mobile-app-representation-and-see-all-its-details-from-the</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">todo</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">"[Client Configuration] As a Mobile App Developer,"[Client Configuration] As a Mobile App Developer</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">I want to be able to see and copy the client configuration of a Mobile App Representation from the CLI</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">such that I can inject it or paste it into my Mobile Client."</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://trello.com/c/W6fgAQVg/64-client-configuration-as-a-mobile-app-developer-i-want-to-be-able-to-see-and-copy-the-client-configuration-of-a-mobile-app-repres" class="bare">trello.com/c/W6fgAQVg/64-client-configuration-as-a-mobile-app-developer-i-want-to-be-able-to-see-and-copy-the-client-configuration-of-a-mobile-app-repres</a></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">todo</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">"[MAR delete] As a Mobile Developer,"[MAR delete] As a Mobile Developer</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">I want to be able to remove/de-provision a Mobile App Representation</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">such that I can remove unwanted Mobile App Representations from my project."</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://trello.com/c/RVL4zViZ/45-mar-delete-as-a-mobile-developer-i-want-to-be-able-to-remove-de-provision-a-mobile-app-representation-such-that-i-can-remove-unw" class="bare">trello.com/c/RVL4zViZ/45-mar-delete-as-a-mobile-developer-i-want-to-be-able-to-remove-de-provision-a-mobile-app-representation-such-that-i-can-remove-unw</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">todo</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">"[MAR delete] As a Mobile Developer,"[MAR delete] As a Mobile Developer</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">I want to be able to remove/de-provision a Mobile App Representation from the CLI</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">such that I can remove unwanted Mobile App Representations from my project."</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://trello.com/c/PF5kM8hw/65-mar-delete-as-a-mobile-developer-i-want-to-be-able-to-remove-de-provision-a-mobile-app-representation-from-the-cli-such-that-i-c" class="bare">trello.com/c/PF5kM8hw/65-mar-delete-as-a-mobile-developer-i-want-to-be-able-to-remove-de-provision-a-mobile-app-representation-from-the-cli-such-that-i-c</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">todo</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">"[MAR Create] As a Mobile Developer,"[MAR Create] As a Mobile Developer</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">I want to be able to create/provision a Mobile App Representation from the CLI</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">such that I have a visual representation of a client application."</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://trello.com/c/i07RNTne/62-mar-create-as-a-mobile-developer-i-want-to-be-able-to-create-provision-a-mobile-app-representation-from-the-cli-such-that-i-have" class="bare">trello.com/c/i07RNTne/62-mar-create-as-a-mobile-developer-i-want-to-be-able-to-create-provision-a-mobile-app-representation-from-the-cli-such-that-i-have</a></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">todo</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">"[13] [Client Configuration] As a Mobile App Developer,"[13] [Client Configuration] As a Mobile App Developer</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">I want to be able to see and copy the client configuration of a Mobile App Representation</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">such that I can inject it or paste it into my Mobile Client."</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://trello.com/c/xDDUG4YB/46-13-client-configuration-as-a-mobile-app-developer-i-want-to-be-able-to-see-and-copy-the-client-configuration-of-a-mobile-app-rep" class="bare">trello.com/c/xDDUG4YB/46-13-client-configuration-as-a-mobile-app-developer-i-want-to-be-able-to-see-and-copy-the-client-configuration-of-a-mobile-app-rep</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">todo</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">"[8] [Service View] As a Mobile Developer,"[8] [Service View] As a Mobile Developer</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">I want to be able to view all details (URLs</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Configuration</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Version) of a provisioned Mobile Service</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">such that all necessary details of a Mobile Service is easily accessible."</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://trello.com/c/jz9jRfP1/50-8-service-view-as-a-mobile-developer-i-want-to-be-able-to-view-all-details-urls-configuration-version-of-a-provisioned-mobile-se" class="bare">trello.com/c/jz9jRfP1/50-8-service-view-as-a-mobile-developer-i-want-to-be-able-to-view-all-details-urls-configuration-version-of-a-provisioned-mobile-se</a></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">todo</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">"[3] [Sevice Integration Delete] As a Mobile Developer,"[3] [Sevice Integration Delete] As a Mobile Developer</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">I want to be able to remove an existing integration between two Mobile Services</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">such that I have full control of the management of Mobile Service integrations."</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://trello.com/c/4C6T3FDP/40-3-sevice-integration-delete-as-a-mobile-developer-i-want-to-be-able-to-remove-an-existing-integration-between-two-mobile-service" class="bare">trello.com/c/4C6T3FDP/40-3-sevice-integration-delete-as-a-mobile-developer-i-want-to-be-able-to-remove-an-existing-integration-between-two-mobile-service</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">todo</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">"[21] [MAR View] As a Mobile App Developer,"[21] [MAR View] As a Mobile App Developer</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">I want to be able to select a Mobile App Representation and see all its details</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">such that all information for that Mobile App Representation is available to me."</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://trello.com/c/J4aPt1m8/51-21-mar-view-as-a-mobile-app-developer-i-want-to-be-able-to-select-a-mobile-app-representation-and-see-all-its-details-such-that" class="bare">trello.com/c/J4aPt1m8/51-21-mar-view-as-a-mobile-app-developer-i-want-to-be-able-to-select-a-mobile-app-representation-and-see-all-its-details-such-that</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">todo</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">"[21] [Custom Service] As a Mobile Developer,"[21] [Custom Service] As a Mobile Developer</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">I want to be able to expose an existing Custom Service to my Mobile Application</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">such that I can add a mobile perspective to my existing service."</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://trello.com/c/860S1IF5/54-21-custom-service-as-a-mobile-developer-i-want-to-be-able-to-expose-an-existing-custom-service-to-my-mobile-application-such-tha" class="bare">trello.com/c/860S1IF5/54-21-custom-service-as-a-mobile-developer-i-want-to-be-able-to-expose-an-existing-custom-service-to-my-mobile-application-such-tha</a></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">todo</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">"[8] As a Developer,"[8] As a Developer</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">I want to be able to create a Xamarin Mobile Client so that I can create Xamarin Mobile Client"</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://trello.com/c/kJZDPeNv/86-8-as-a-developer-i-want-to-be-able-to-create-a-xamarin-mobile-client-so-that-i-can-create-xamarin-mobile-client" class="bare">trello.com/c/kJZDPeNv/86-8-as-a-developer-i-want-to-be-able-to-create-a-xamarin-mobile-client-so-that-i-can-create-xamarin-mobile-client</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">todo</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">"[13] [Service Discovery] As a Mobile Developer,"[13] [Service Discovery] As a Mobile Developer</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">I want to be able to jump straight into the Mobile Category in the Catalog</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">such that I can see what Mobile Services are available."</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://trello.com/c/08yC7Vky/73-13-service-discovery-as-a-mobile-developer-i-want-to-be-able-to-jump-straight-into-the-mobile-category-in-the-catalog-such-that" class="bare">trello.com/c/08yC7Vky/73-13-service-discovery-as-a-mobile-developer-i-want-to-be-able-to-jump-straight-into-the-mobile-category-in-the-catalog-such-that</a></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">todo</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">"[8] [MAR Integration] As a mobile developer,"[8] [MAR Integration] As a mobile developer</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">I want to be able to unbind my mobile client from an available mobile service</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">so that it removes the required configuration and created resources that were being consumed by my client."</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://trello.com/c/nYKyLSvg/84-8-mar-integration-as-a-mobile-developer-i-want-to-be-able-to-unbind-my-mobile-client-from-an-available-mobile-service-so-that-it" class="bare">trello.com/c/nYKyLSvg/84-8-mar-integration-as-a-mobile-developer-i-want-to-be-able-to-unbind-my-mobile-client-from-an-available-mobile-service-so-that-it</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">todo</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">"[13] As a DevOps Engineer,"[13] As a DevOps Engineer</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">I want to provision and configure my OpenShift (using Minishift)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">such that I can use the mobile product."</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://trello.com/c/Aj556lp4/18-13-as-a-devops-engineer-i-want-to-provision-and-configure-my-openshift-using-minishift-such-that-i-can-use-the-mobile-product" class="bare">trello.com/c/Aj556lp4/18-13-as-a-devops-engineer-i-want-to-provision-and-configure-my-openshift-using-minishift-such-that-i-can-use-the-mobile-product</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">todo</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">"[5] [Shared Services] As a Mobile Developer,"[5] [Shared Services] As a Mobile Developer</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">I want to be able to integrate two Mobile Services together (across projects) from the CLI</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">such that I can potentially share a common Mobile Service between different projects."</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://trello.com/c/qYiUudRt/63-5-shared-services-as-a-mobile-developer-i-want-to-be-able-to-integrate-two-mobile-services-together-across-projects-from-the-cli" class="bare">trello.com/c/qYiUudRt/63-5-shared-services-as-a-mobile-developer-i-want-to-be-able-to-integrate-two-mobile-services-together-across-projects-from-the-cli</a></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">todo</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">[13] As a developer using the CLI I want to be able to create a binding to a pre existing instance of Keycloak / RHSSO rather than having to create a new one for each project [AEROGEAR-1943]</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://trello.com/c/KvHFWAwB/114-13-as-a-developer-using-the-cli-i-want-to-be-able-to-create-a-binding-to-a-pre-existing-instance-of-keycloak-rhsso-rather-than-h" class="bare">trello.com/c/KvHFWAwB/114-13-as-a-developer-using-the-cli-i-want-to-be-able-to-create-a-binding-to-a-pre-existing-instance-of-keycloak-rhsso-rather-than-h</a></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">todo</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">[13] As an OpenShift UI developer I want to be able to bind to an existing service (e.g. Push / Keycloak) rather than having to stand up a dedicated instance each time [AEROGEAR-2078]</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://trello.com/c/dNawvC4K/115-13-as-an-openshift-ui-developer-i-want-to-be-able-to-bind-to-an-existing-service-eg-push-keycloak-rather-than-having-to-stand-up" class="bare">trello.com/c/dNawvC4K/115-13-as-an-openshift-ui-developer-i-want-to-be-able-to-bind-to-an-existing-service-eg-push-keycloak-rather-than-having-to-stand-up</a></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">todo</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">[13] As a developer using the OpenShift UI I want to be able to see what mobile apps are associated with services within my current namespace so that I know which and how many apps are using a specific service [AEROGEAR-2081]</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://trello.com/c/X33b91eF/116-13-as-a-developer-using-the-openshift-ui-i-want-to-be-able-to-see-what-mobile-apps-are-associated-with-services-within-my-curren" class="bare">trello.com/c/X33b91eF/116-13-as-a-developer-using-the-openshift-ui-i-want-to-be-able-to-see-what-mobile-apps-are-associated-with-services-within-my-curren</a></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">todo</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">[3] As a developer using the OpenShift UI I want to be able to unbind services so that I can remove a previously created binding between services [AEROGEAR-2084]</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://trello.com/c/iz9IvUTE/117-3-as-a-developer-using-the-openshift-ui-i-want-to-be-able-to-unbind-services-so-that-i-can-remove-a-previously-created-binding-b" class="bare">trello.com/c/iz9IvUTE/117-3-as-a-developer-using-the-openshift-ui-i-want-to-be-able-to-unbind-services-so-that-i-can-remove-a-previously-created-binding-b</a></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">todo</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">[13] As a developer I want to be able to create a representation of a Native Android and/or iOS app via the OpenShift UI so that I can integrate the mobile service SDKs and builds [AEROGEAR-2083]</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://trello.com/c/gkvtOu5n/118-13-as-a-developer-i-want-to-be-able-to-create-a-representation-of-a-native-android-and-or-ios-app-via-the-openshift-ui-so-that-i" class="bare">trello.com/c/gkvtOu5n/118-13-as-a-developer-i-want-to-be-able-to-create-a-representation-of-a-native-android-and-or-ios-app-via-the-openshift-ui-so-that-i</a></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">todo</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">[8] As a AeroGear community developer I want to be able to automatically test PR&#8217;s and builds on AWS using a Jenkins plugin so that I have an automated end to end test environment.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://trello.com/c/nudr4YrU/119-8-as-a-aerogear-community-developer-i-want-to-be-able-to-automatically-test-prs-and-builds-on-aws-using-a-jenkins-plugin-so-that" class="bare">trello.com/c/nudr4YrU/119-8-as-a-aerogear-community-developer-i-want-to-be-able-to-automatically-test-prs-and-builds-on-aws-using-a-jenkins-plugin-so-that</a></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">todo</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">"[8] As a person demoing MCP I want a compelling,"[8] As a person demoing MCP I want a compelling</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">cohesive demo / onboarding experience with detailed setup instructions so that I can demo MCP in the most positive light and promote it&#8217;s value."</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://trello.com/c/RXWnrVis/120-8-as-a-person-demoing-mcp-i-want-a-compelling-cohesive-demo-onboarding-experience-with-detailed-setup-instructions-so-that-i-can" class="bare">trello.com/c/RXWnrVis/120-8-as-a-person-demoing-mcp-i-want-a-compelling-cohesive-demo-onboarding-experience-with-detailed-setup-instructions-so-that-i-can</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">todo</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">[8] As a CLI developer I want to be able to remove / unbind a service from my application so that I have full control over the relationship between apps and services.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://trello.com/c/ejWEqZDh/121-8-as-a-cli-developer-i-want-to-be-able-to-remove-unbind-a-service-from-my-application-so-that-i-have-full-control-over-the-relat" class="bare">trello.com/c/ejWEqZDh/121-8-as-a-cli-developer-i-want-to-be-able-to-remove-unbind-a-service-from-my-application-so-that-i-have-full-control-over-the-relat</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">todo</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">"[13] As a developer with the Android IDE extension enabled,"[13] As a developer with the Android IDE extension enabled</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">I want to automatically create a representation of a Native Android app in OpenShift in response to creating a new app in the IDE so that I can integrate the mobile service SDKs and builds."</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://trello.com/c/fPNxFIQa/122-13-as-a-developer-with-the-android-ide-extension-enabled-i-want-to-automatically-create-a-representation-of-a-native-android-app" class="bare">trello.com/c/fPNxFIQa/122-13-as-a-developer-with-the-android-ide-extension-enabled-i-want-to-automatically-create-a-representation-of-a-native-android-app</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">todo</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">[13] As a CLI Developer I want to be able to create a binding between Auth (Keycloak) and Sync so that I can protect the Sync Server using Auth</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://trello.com/c/yZGeAxzd/123-13-as-a-cli-developer-i-want-to-be-able-to-create-a-binding-between-auth-keycloak-and-sync-so-that-i-can-protect-the-sync-server" class="bare">trello.com/c/yZGeAxzd/123-13-as-a-cli-developer-i-want-to-be-able-to-create-a-binding-between-auth-keycloak-and-sync-so-that-i-can-protect-the-sync-server</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">todo</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">[13] As a developer I want to be able (forced?) to record the bundle Id (iOS) / Package Name (Android) for my app in MCP so that I can reconcile the mobile client to the app representation in OpenShift/MCP</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://trello.com/c/Mn4sl7ZZ/124-13-as-a-developer-i-want-to-be-able-forced-to-record-the-bundle-id-ios-package-name-android-for-my-app-in-mcp-so-that-i-can-reco" class="bare">trello.com/c/Mn4sl7ZZ/124-13-as-a-developer-i-want-to-be-able-forced-to-record-the-bundle-id-ios-package-name-android-for-my-app-in-mcp-so-that-i-can-reco</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">todo</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">[13] As a developer using the Android Studio Plugin I want to be able to retrieve my SDK config in JSON format so that I can include it in my mobile application.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://trello.com/c/txsO19wG/125-13-as-a-developer-using-the-android-studio-plugin-i-want-to-be-able-to-retrieve-my-sdk-config-in-json-format-so-that-i-can-inclu" class="bare">trello.com/c/txsO19wG/125-13-as-a-developer-using-the-android-studio-plugin-i-want-to-be-able-to-retrieve-my-sdk-config-in-json-format-so-that-i-can-inclu</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">todo</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">[5] As a CLI developer I want to be able to retrieve my SDK config in JSON format so that I can include it in my mobile application.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://trello.com/c/SNNkv5pH/126-5-as-a-cli-developer-i-want-to-be-able-to-retrieve-my-sdk-config-in-json-format-so-that-i-can-include-it-in-my-mobile-applicatio" class="bare">trello.com/c/SNNkv5pH/126-5-as-a-cli-developer-i-want-to-be-able-to-retrieve-my-sdk-config-in-json-format-so-that-i-can-include-it-in-my-mobile-applicatio</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">todo</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">[5] As a mobile developer I want to be able to set up a local instance using Minishift for OpenShift &amp; MCP so that I can evaluate the offering as quickly and easily as possible.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://trello.com/c/afOEsqef/127-5-as-a-mobile-developer-i-want-to-be-able-to-set-up-a-local-instance-using-minishift-for-openshift-mcp-so-that-i-can-evaluate-th" class="bare">trello.com/c/afOEsqef/127-5-as-a-mobile-developer-i-want-to-be-able-to-set-up-a-local-instance-using-minishift-for-openshift-mcp-so-that-i-can-evaluate-th</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">todo</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">"[8] As a developer I want to be able to create a representation of a mobile app (Native Android,"[8] As a developer I want to be able to create a representation of a mobile app (Native Android</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Native iOS &amp; Cordova) via the CLI so that I can integrate the mobile service SDKs and builds."</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://trello.com/c/zeEZa8ub/128-8-as-a-developer-i-want-to-be-able-to-create-a-representation-of-a-mobile-app-native-android-native-ios-cordova-via-the-cli-so-t" class="bare">trello.com/c/zeEZa8ub/128-8-as-a-developer-i-want-to-be-able-to-create-a-representation-of-a-mobile-app-native-android-native-ios-cordova-via-the-cli-so-t</a></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">todo</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">[8] As a mobile developer I want to be able to list the available mobile services via the CLI so I can see what services are available to be consumed.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://trello.com/c/mPfFhCoS/129-8-as-a-mobile-developer-i-want-to-be-able-to-list-the-available-mobile-services-via-the-cli-so-i-can-see-what-services-are-avail" class="bare">trello.com/c/mPfFhCoS/129-8-as-a-mobile-developer-i-want-to-be-able-to-list-the-available-mobile-services-via-the-cli-so-i-can-see-what-services-are-avail</a></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">todo</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">[20] As a mobile developer I want to be able to list the available mobile services via the Android Studio UI Extension so I can see what services are available to be consumed.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://trello.com/c/j6Pz5gVk/130-20-as-a-mobile-developer-i-want-to-be-able-to-list-the-available-mobile-services-via-the-android-studio-ui-extension-so-i-can-se" class="bare">trello.com/c/j6Pz5gVk/130-20-as-a-mobile-developer-i-want-to-be-able-to-list-the-available-mobile-services-via-the-android-studio-ui-extension-so-i-can-se</a></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">todo</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">[8] As a mobile developer I want to be able to enable the Identity Management service via the CLI so that I can start using the service</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://trello.com/c/C8kWWeNW/131-8-as-a-mobile-developer-i-want-to-be-able-to-enable-the-identity-management-service-via-the-cli-so-that-i-can-start-using-the-se" class="bare">trello.com/c/C8kWWeNW/131-8-as-a-mobile-developer-i-want-to-be-able-to-enable-the-identity-management-service-via-the-cli-so-that-i-can-start-using-the-se</a></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">todo</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">[13] As a mobile developer I want to be able to enable the Identity Management service via the Android Studio so that I can start using the service</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://trello.com/c/jogTUjtQ/132-13-as-a-mobile-developer-i-want-to-be-able-to-enable-the-identity-management-service-via-the-android-studio-so-that-i-can-start" class="bare">trello.com/c/jogTUjtQ/132-13-as-a-mobile-developer-i-want-to-be-able-to-enable-the-identity-management-service-via-the-android-studio-so-that-i-can-start</a></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">todo</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">"[13] As an Android IntelliJ Plugin User,"[13] As an Android IntelliJ Plugin User</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">I want to be able to configure on a per-app basis which OpenShift instance and user account to use so that this information is tied to my app and ensures that I am always targeting the same OpenShift instance [AEROGEAR-2077]"</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://trello.com/c/nF7lWxiJ/133-13-as-an-android-intellij-plugin-user-i-want-to-be-able-to-configure-on-a-per-app-basis-which-openshift-instance-and-user-accoun" class="bare">trello.com/c/nF7lWxiJ/133-13-as-an-android-intellij-plugin-user-i-want-to-be-able-to-configure-on-a-per-app-basis-which-openshift-instance-and-user-accoun</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">todo</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">"[3] As a Developer,"[3] As a Developer</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">I want a promotional video showing me how to get Mobile up and running from scratch using Minishift."</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://trello.com/c/ItkOqbtr/87-3-as-a-developer-i-want-a-promotional-video-showing-me-how-to-get-mobile-up-and-running-from-scratch-using-minishift" class="bare">trello.com/c/ItkOqbtr/87-3-as-a-developer-i-want-a-promotional-video-showing-me-how-to-get-mobile-up-and-running-from-scratch-using-minishift</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">todo</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">"[5] As an AeroGear maintainer,"[5] As an AeroGear maintainer</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">I want to clearly define the architecture of the Cordova Mobile SDK so that we have a clear and extensible architecture for our SDK across the services [comm]"</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://trello.com/c/NUyq7GOt/20-5-as-an-aerogear-maintainer-i-want-to-clearly-define-the-architecture-of-the-cordova-mobile-sdk-so-that-we-have-a-clear-and-exte" class="bare">trello.com/c/NUyq7GOt/20-5-as-an-aerogear-maintainer-i-want-to-clearly-define-the-architecture-of-the-cordova-mobile-sdk-so-that-we-have-a-clear-and-exte</a></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">todo</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">"[13] As a Developer,"[13] As a Developer</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">I want to be able to connect my Android App to a Custom Backend Service which is protected by Keycloak</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">such that I have an end to end flow."</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://trello.com/c/ngoT5fZg/41-13-as-a-developer-i-want-to-be-able-to-connect-my-android-app-to-a-custom-backend-service-which-is-protected-by-keycloak-such-th" class="bare">trello.com/c/ngoT5fZg/41-13-as-a-developer-i-want-to-be-able-to-connect-my-android-app-to-a-custom-backend-service-which-is-protected-by-keycloak-such-th</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">todo</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">"[5] [SDK,"[5] [SDK</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">android] As a Developer</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">I want to be able to integrate with the UPS server from my Android Application</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">such that I can send Push Notification to App users."</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://trello.com/c/wyHekrJ8/45-5-sdk-android-as-a-developer-i-want-to-be-able-to-integrate-with-the-ups-server-from-my-android-application-such-that-i-can-send" class="bare">trello.com/c/wyHekrJ8/45-5-sdk-android-as-a-developer-i-want-to-be-able-to-integrate-with-the-ups-server-from-my-android-application-such-that-i-can-send</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">todo</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">"[5] [provision UPS] As a Developer,"[5] [provision UPS] As a Developer</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">I want to be able to provision a UPS service on OpenShift</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">such that I can consume it from Mobile Applications."</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://trello.com/c/aijBbo6j/42-5-provision-ups-as-a-developer-i-want-to-be-able-to-provision-a-ups-service-on-openshift-such-that-i-can-consume-it-from-mobile" class="bare">trello.com/c/aijBbo6j/42-5-provision-ups-as-a-developer-i-want-to-be-able-to-provision-a-ups-service-on-openshift-such-that-i-can-consume-it-from-mobile</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">todo</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">"[8] [PushConfig to MAR,"[8] [PushConfig to MAR</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">sync] As a Developer</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">I want the configuration generated by the UPS server to be available in the associating MAR inside OpenShift</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">such that all config is available for SDK auto-configuration to occur."</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://trello.com/c/eYDEQK1o/43-8-pushconfig-to-mar-sync-as-a-developer-i-want-the-configuration-generated-by-the-ups-server-to-be-available-in-the-associating" class="bare">trello.com/c/eYDEQK1o/43-8-pushconfig-to-mar-sync-as-a-developer-i-want-the-configuration-generated-by-the-ups-server-to-be-available-in-the-associating</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">todo</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">[8] As a developer I want a dashboard showing results from device security checks so that I can visualise the data relating to these checks [met]</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://trello.com/c/kZ1zMnm7/33-8-as-a-developer-i-want-a-dashboard-showing-results-from-device-security-checks-so-that-i-can-visualise-the-data-relating-to-the" class="bare">trello.com/c/kZ1zMnm7/33-8-as-a-developer-i-want-a-dashboard-showing-results-from-device-security-checks-so-that-i-can-visualise-the-data-relating-to-the</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">todo</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">[13] As a developer I want to be able to provision a UPS service on Openshift so that I can consume it from Mobile Apps [push]</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://trello.com/c/WY3urRkM/35-13-as-a-developer-i-want-to-be-able-to-provision-a-ups-service-on-openshift-so-that-i-can-consume-it-from-mobile-apps-push" class="bare">trello.com/c/WY3urRkM/35-13-as-a-developer-i-want-to-be-able-to-provision-a-ups-service-on-openshift-so-that-i-can-consume-it-from-mobile-apps-push</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">todo</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">[8] As an Android developer I want to be able to integrate with the UPS server so that I can send Push Notification to App users [push]</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://trello.com/c/th055KJf/36-8-as-an-android-developer-i-want-to-be-able-to-integrate-with-the-ups-server-so-that-i-can-send-push-notification-to-app-users-p" class="bare">trello.com/c/th055KJf/36-8-as-an-android-developer-i-want-to-be-able-to-integrate-with-the-ups-server-so-that-i-can-send-push-notification-to-app-users-p</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">todo</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">[8] As an iOS developer I want to be able to integrate with the UPS server so that I can send Push Notification to App users [push]</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://trello.com/c/oeEOzJWW/37-8-as-an-ios-developer-i-want-to-be-able-to-integrate-with-the-ups-server-so-that-i-can-send-push-notification-to-app-users-push" class="bare">trello.com/c/oeEOzJWW/37-8-as-an-ios-developer-i-want-to-be-able-to-integrate-with-the-ups-server-so-that-i-can-send-push-notification-to-app-users-push</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">todo</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">[8] As an Android Mobile developer I want to capture metrics on device self-defence checks so that I know when a check has failed and what device it has happened on [met]</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://trello.com/c/tnoYEHyE/26-8-as-an-android-mobile-developer-i-want-to-capture-metrics-on-device-self-defence-checks-so-that-i-know-when-a-check-has-failed" class="bare">trello.com/c/tnoYEHyE/26-8-as-an-android-mobile-developer-i-want-to-capture-metrics-on-device-self-defence-checks-so-that-i-know-when-a-check-has-failed</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">todo</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">[5] As an iOS Developer I want a metrics SDK (as part of the overall iOS SDK) so that the SDK will capture metrics information automatically when the metrics service is enabled. [met]</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://trello.com/c/PTjxmLw1/28-5-as-an-ios-developer-i-want-a-metrics-sdk-as-part-of-the-overall-ios-sdk-so-that-the-sdk-will-capture-metrics-information-autom" class="bare">trello.com/c/PTjxmLw1/28-5-as-an-ios-developer-i-want-a-metrics-sdk-as-part-of-the-overall-ios-sdk-so-that-the-sdk-will-capture-metrics-information-autom</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">todo</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">[5] As an Android Developer I want a metrics SDK (as part of the overall android SDK) so that the SDK will capture metrics information automatically when the metrics service is enabled. [met]</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://trello.com/c/BZ4Y8WBB/24-5-as-an-android-developer-i-want-a-metrics-sdk-as-part-of-the-overall-android-sdk-so-that-the-sdk-will-capture-metrics-informati" class="bare">trello.com/c/BZ4Y8WBB/24-5-as-an-android-developer-i-want-a-metrics-sdk-as-part-of-the-overall-android-sdk-so-that-the-sdk-will-capture-metrics-informati</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">todo</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">[13] As a developer I want to be able to visualise runtime metrics about what versions of the mobile service SDKs are in use so that I can track what versions are used and see uptake of new SDK versions in order to deprecate services linked to older SDKs [met]</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://trello.com/c/lt4jc3h4/10-13-as-a-developer-i-want-to-be-able-to-visualise-runtime-metrics-about-what-versions-of-the-mobile-service-sdks-are-in-use-so-th" class="bare">trello.com/c/lt4jc3h4/10-13-as-a-developer-i-want-to-be-able-to-visualise-runtime-metrics-about-what-versions-of-the-mobile-service-sdks-are-in-use-so-th</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">todo</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">"[13] As an AeroGear maintainer,"[13] As an AeroGear maintainer</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">I want to clearly define the architecture of the Android Mobile SDK so that we have a clear and extensible architecture for our SDK across the services [comm]"</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://trello.com/c/zMYewtHp/16-13-as-an-aerogear-maintainer-i-want-to-clearly-define-the-architecture-of-the-android-mobile-sdk-so-that-we-have-a-clear-and-ext" class="bare">trello.com/c/zMYewtHp/16-13-as-an-aerogear-maintainer-i-want-to-clearly-define-the-architecture-of-the-android-mobile-sdk-so-that-we-have-a-clear-and-ext</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">todo</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">[5] As a DevOps Engineer I want to be able to visualise data provided by the other services on an overview / dashboard screen [met]</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://trello.com/c/SQsfFS34/4-5-as-a-devops-engineer-i-want-to-be-able-to-visualise-data-provided-by-the-other-services-on-an-overview-dashboard-screen-met" class="bare">trello.com/c/SQsfFS34/4-5-as-a-devops-engineer-i-want-to-be-able-to-visualise-data-provided-by-the-other-services-on-an-overview-dashboard-screen-met</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">todo</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">"[5] As a developer I want clear instructions (e.g. docs,"[5] As a developer I want clear instructions (e.g. docs</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">examples</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">videos) on how to use and integrate with the metrics service so that I can get it working as quickly as possible [met]"</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://trello.com/c/1mRlgQHk/9-5-as-a-developer-i-want-clear-instructions-eg-docs-examples-videos-on-how-to-use-and-integrate-with-the-metrics-service-so-that" class="bare">trello.com/c/1mRlgQHk/9-5-as-a-developer-i-want-clear-instructions-eg-docs-examples-videos-on-how-to-use-and-integrate-with-the-metrics-service-so-that</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">todo</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">[8] As a developer I want to be able to visualise data about the Auth (Keycloak/RHSSO) service on a dedicated dashboard.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://trello.com/c/RjG9UEpA/22-8-as-a-developer-i-want-to-be-able-to-visualise-data-about-the-auth-keycloak-rhsso-service-on-a-dedicated-dashboard" class="bare">trello.com/c/RjG9UEpA/22-8-as-a-developer-i-want-to-be-able-to-visualise-data-about-the-auth-keycloak-rhsso-service-on-a-dedicated-dashboard</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">todo</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">"[13] As an AeroGear maintainer,"[13] As an AeroGear maintainer</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">I want to clearly define the architecture of the iOS Mobile SDK so that we have a clear and extensible architecture for our SDK across the services [comm]"</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://trello.com/c/wKmU3U0E/19-13-as-an-aerogear-maintainer-i-want-to-clearly-define-the-architecture-of-the-ios-mobile-sdk-so-that-we-have-a-clear-and-extensi" class="bare">trello.com/c/wKmU3U0E/19-13-as-an-aerogear-maintainer-i-want-to-clearly-define-the-architecture-of-the-ios-mobile-sdk-so-that-we-have-a-clear-and-extensi</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">todo</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">[3] As a developer I want single sign on between OpenShift and the Metrics Service so that I only need to sign in once and am authenticated everywhere [met]</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://trello.com/c/54HXFuvp/12-3-as-a-developer-i-want-single-sign-on-between-openshift-and-the-metrics-service-so-that-i-only-need-to-sign-in-once-and-am-auth" class="bare">trello.com/c/54HXFuvp/12-3-as-a-developer-i-want-single-sign-on-between-openshift-and-the-metrics-service-so-that-i-only-need-to-sign-in-once-and-am-auth</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">todo</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">[3] As a developer I want to be able to expose metrics data about Identity Management in prometheus format from an endpoint of the service [idm]</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://trello.com/c/NgXh76Oi/23-3-as-a-developer-i-want-to-be-able-to-expose-metrics-data-about-identity-management-in-prometheus-format-from-an-endpoint-of-the" class="bare">trello.com/c/NgXh76Oi/23-3-as-a-developer-i-want-to-be-able-to-expose-metrics-data-about-identity-management-in-prometheus-format-from-an-endpoint-of-the</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">todo</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">[5] As a DevOps Engineer I want to be able to visualise detailed data provided by a specific service on a dedicated screen or section of UI [met]</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://trello.com/c/iw8e0m9f/5-5-as-a-devops-engineer-i-want-to-be-able-to-visualise-detailed-data-provided-by-a-specific-service-on-a-dedicated-screen-or-sect" class="bare">trello.com/c/iw8e0m9f/5-5-as-a-devops-engineer-i-want-to-be-able-to-visualise-detailed-data-provided-by-a-specific-service-on-a-dedicated-screen-or-sect</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">todo</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">[3] As a developer I want to have metrics be automatically aware of other mobile services [met]</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://trello.com/c/bQd5cl7f/17-3-as-a-developer-i-want-to-have-metrics-be-automatically-aware-of-other-mobile-services-met" class="bare">trello.com/c/bQd5cl7f/17-3-as-a-developer-i-want-to-have-metrics-be-automatically-aware-of-other-mobile-services-met</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">todo</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">[5] As a developer I want to be able to quickly and easily provision a metrics service [met]</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://trello.com/c/1Fg5IW0U/7-5-as-a-developer-i-want-to-be-able-to-quickly-and-easily-provision-a-metrics-service-met" class="bare">trello.com/c/1Fg5IW0U/7-5-as-a-developer-i-want-to-be-able-to-quickly-and-easily-provision-a-metrics-service-met</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">todo</p></td>
+</tr>
+</tbody>
+</table>
+</article>
+  </main>
+</div>
+<footer class="footer">
+  <p>This is a preview of the https://docs.aerogear.org website.</p>
+</footer>
+<script src="../../_/js/site.js"></script>
+<script src="../../_/js/vendor/highlight.js"></script>
+<script>hljs.initHighlighting()</script>
+  </body>
+</html>

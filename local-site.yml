@@ -12,7 +12,7 @@ asciidoc:
     toc: ~
 ui:
   bundle:
-    url: https://github.com/finp/antora-ui/raw/master/build/ui-bundle.zip
+    url: ../antora-ui/build/ui-bundle.zip
     snapshot: true
 output:
   dir: ./docs

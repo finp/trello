@@ -1,0 +1,4 @@
+* xref:index.adoc[Overview]
+** xref:core.adoc[Core Team]
+** xref:ST1.adoc[Service Team 1]
+** xref:ST2.adoc[Service Team 2]

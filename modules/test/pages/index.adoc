@@ -1,0 +1,40 @@
+= AeroGear Story
+
+== Ordinary
+
+[source,json,indent=0,role="primary"]
+.All Services
+----
+testtest
+----
+
+[source,json,indent=0,role="secondary"]
+.Specific
+----
+test
+----
+
+
+[source,json,indent=0,role="primary"]
+.All Services
+----
+test
+----
+
+[source,json,indent=0,role="secondary"]
+.Specific
+----
+test
+----
+
+[role="primary"]
+.All Services
+== testh2
+
+test
+
+[role="secondary"]
+.Specific
+== h2
+
+test2
