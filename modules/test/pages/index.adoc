@@ -27,14 +27,30 @@ test
 test
 ----
 
-[role="primary"]
-.All Services
+++++
+<div class="listingblock primary">
+<div class="title">All Services</div>
+<div class="content">
+++++
+
 == testh2
 
 test
 
-[role="secondary"]
-.Specific
+++++
+</div></div>
+++++
+
+++++
+<div class="listingblock secondary">
+<div class="title">Service</div>
+<div class="content">
+++++
+
 == h2
 
 test2
+
+++++
+</div></div>
+++++
