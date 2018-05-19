@@ -3,54 +3,37 @@
 == Ordinary
 
 [source,json,indent=0,role="primary"]
-.All Services
+.All SDKs
 ----
-testtest
-----
-
-[source,json,indent=0,role="secondary"]
-.Specific
-----
-test
-----
-
-
-[source,json,indent=0,role="primary"]
-.All Services
-----
-test
+generic command
 ----
 
 [source,json,indent=0,role="secondary"]
-.Specific
+.Specific SDK
 ----
-test
+Specific command
 ----
+
 
 [role="primary"]
-.All
+.All Services
 ****
-. testh2
 
-. test
+include::test.adoc[]
+
 
 ****
 
 [role="secondary"]
-.Metrics
+.Specific Service
 ****
+Just a list of stuff
 
-Here's a sample AsciiDoc document:
+* thing
+* item
+* piece
+* part
+* section
 
-[listing]
-....
-= Title of Document
-Doc Writer
-:toc:
-
-This guide provides...
-....
-
-The document header is useful, but not required.
 
 ****
