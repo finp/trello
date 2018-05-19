@@ -27,30 +27,30 @@ test
 test
 ----
 
-++++
-<div class="listingblock primary">
-<div class="title">All Services</div>
-<div class="content">
-++++
+[role="primary"]
+.All
+****
+. testh2
 
-== testh2
+. test
 
-test
+****
 
-++++
-</div></div>
-++++
+[role="secondary"]
+.Metrics
+****
 
-++++
-<div class="listingblock secondary">
-<div class="title">Service</div>
-<div class="content">
-++++
+Here's a sample AsciiDoc document:
 
-== h2
+[listing]
+....
+= Title of Document
+Doc Writer
+:toc:
 
-test2
+This guide provides...
+....
 
-++++
-</div></div>
-++++
+The document header is useful, but not required.
+
+****
