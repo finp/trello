@@ -19,7 +19,7 @@ Specific command
 .All Services
 ****
 
-include::test.adoc[]
+include::test.adoc[tags=proc_test]
 
 
 ****
