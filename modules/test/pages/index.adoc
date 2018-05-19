@@ -27,6 +27,10 @@ include::test.adoc[tags=proc_test]
 [role="secondary"]
 .Specific Service
 ****
+
+include::rantora-test.adoc[tags=proc_test]
+
+
 Just a list of stuff
 
 * thing

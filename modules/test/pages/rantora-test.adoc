@@ -1,0 +1,12 @@
+A sample AsciiDoc document:
+
+// tag::proc_test[]
+
+[listing]
+....
+code, code code.
+....
+
+// end::proc_test[]
+
+The document header is useful, but not required.

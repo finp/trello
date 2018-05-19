@@ -10,9 +10,11 @@ asciidoc:
     hide-uri-scheme: ''
     mobile-next: 'AeroGear'
     toc: ~
+runtime:
+  cache_dir: ./.cache
 ui:
   bundle:
-    url: ../antora-ui/build/ui-bundle.zip
+    url:  https://github.com/finp/antora-ui/raw/master/build/ui-bundle.zip
     snapshot: true
 output:
   dir: ./docs
